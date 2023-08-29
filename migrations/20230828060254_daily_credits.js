@@ -3,18 +3,20 @@
  * @returns { Promise<void> }
  */
 exports.up = function(knex) {
-    return knex.schema.createTable('totalCredits', (table) => {
-        table.increments('total_credit_id').primary()
+    return knex.schema.createTable('daily_credits', (table) => {
+        table.increments('credit_id').primary()
         table.integer('student_id').unsigned().references('students.student_id')
-        table.decimal ('total_amount')
-    });
-}
+        table.date ('credit_date')
+        table.decimal ('amount')
+    })
+  
+};
 
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-    return knex.schema.dropTable('totalCredits')
-
+    return knex.schema.dropTable('dailyCredits')
+  
 };

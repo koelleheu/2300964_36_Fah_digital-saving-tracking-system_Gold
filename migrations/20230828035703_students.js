@@ -8,7 +8,8 @@ exports.up = function(knex) {
         table.string('first_name').notNullable()
         table.string('last_name').notNullable()
         table.string('password').notNullable()
-        table.integer('class_id').unsigned().references('classes.class_id')
+        table.integer('class_id').unsigned()
+        table.foreign('class_id').references('classes.class_id')
         table.date('birth_date')
     })
   

@@ -9,6 +9,10 @@ class StudentsModel {
     return db('students').where('student_id', studentId).first();
   }
 
+  async getByClassId(classId) {
+    return db('Students').where('class_id', classId);
+  }
+
   create(studentData) {
     return db('students').insert(studentData);
   }
@@ -21,5 +25,3 @@ class StudentsModel {
     return db('students').where('student_id', studentId).del();
   }
 }
-
-module.exports = new StudentsModel();

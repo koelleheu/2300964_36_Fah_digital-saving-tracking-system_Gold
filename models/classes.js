@@ -2,11 +2,11 @@ const db = require('../db');
 
 class ClassesModel {
   async getAll() {
-    return db('Classes').select('*');
+    return db('classes').select('*');
   }
 
   async getById(classId) {
-    return db('Classes').where('class_id', classId).first();
+    return db('classes').where('class_id', classId).first();
   }
 
 }

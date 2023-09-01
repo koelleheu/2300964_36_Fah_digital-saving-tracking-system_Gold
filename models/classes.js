@@ -15,7 +15,7 @@ class classesModel {
   }
 
   getClassById(classId) {
-    const classById = db('classes').where('class_id', classId);
+    const classById = db('classes').where('class_id', classId).first();
     return classById;
   }
 

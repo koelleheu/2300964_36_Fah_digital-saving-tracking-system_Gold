@@ -26,6 +26,7 @@ class classesController {
         try {
             const classId = req.params.classId;
             const classById = await classes.getClassById(classId);
+            if(!classById) res.status(404).json({ error: 'Class not found' });
             res.status(200).json(classById);
         } catch (error) {
             res.status(500).json({ error: 'Internal server error' });

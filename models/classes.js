@@ -1,14 +1,35 @@
-const db = require('../db');
+const db = require('../db/db');
 
-class ClassesModel {
-  async getAll() {
-    return db('classes').select('*');
+class classesModel {
+
+  createClass(classData) {
+    const { class_name } = classData;
+    const newClass = db('classes').insert({ class_name });
+    console.log('Class added succesfuly')
+    return newClass;
   }
 
-  async getById(classId) {
-    return db('classes').where('class_id', classId).first();
+  getAllClasses() {
+    const classes = db('classes').select('*');
+    return classes
+  }
+
+  getClassById(classId) {
+    const classById = db('classes').where('class_id', classId);
+    return classById;
+  }
+
+  updateClass(classId, classData) {
+    const { class_name } = classData;
+    const updatedClass = db('classes').where('class_id', classId).update({ class_name });
+    return updatedClass;
+  }
+
+  deleteClass(classId) {
+    const deletedClass = db('classes').where('class_id', classId).del();
+    return deletedClass;
   }
 
 }
 
-module.exports = new ClassesModel();
+module.exports = new classesModel();

@@ -1,4 +1,5 @@
 const studentsModel = require('../models/students');
+const creditsModel = require('../models/credits');
 
 class studentsController {
 
@@ -26,9 +27,11 @@ class studentsController {
     async getStudentById(req, res) {
         try {
             const studentId = req.params.studentId;
-            const student = await studentsModel.getStudentById(studentId);
-            if(!student) res.status(404).json({ error: 'Student not found' });
-            res.status(200).json(student);
+            const studentById = await studentsModel.getStudentById(studentId);
+            if(!studentById) {
+                return res.status(404).json({ error: 'Student not found' })};
+            const studentCredits = await creditsModel.getTotalCredit(studentId);
+            res.status(200).json({student: studentById, totalCredits: studentCredits});
             }
          catch (error) {
             res.status(500).json({ error: 'Internal server error' });

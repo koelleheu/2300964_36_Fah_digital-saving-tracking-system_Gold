@@ -11,7 +11,7 @@ module.exports = {
       host: 'localhost',
       database: 'sistem_tabungan',
       user:     'fahmihidayat',
-      password: '4Lhamdulillah'
+      password: 'test'
     },
     pool: {
       min: 2,

@@ -56,6 +56,7 @@ class dailyCreditsModel {
         return result[0].total_amount || 0;
       });
   }
+  
 }
 
 

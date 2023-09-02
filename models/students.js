@@ -24,6 +24,11 @@ class studentsModel {
     return studentById;
   }
 
+  getStudentsByClass(classId) {
+    const studentsByClass = db('students').where('class_id', classId).select('*');
+    return studentsByClass;
+  }
+
   updateStudent(studentId, studentData) {
     const { first_name, last_name, password, class_id, birth_date } = studentData;
     const updatedStudent = db('students').where('student_id', studentId).update({ 

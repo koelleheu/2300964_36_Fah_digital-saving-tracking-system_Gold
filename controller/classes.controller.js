@@ -1,4 +1,5 @@
 const classes = require('../models/classes');
+const studentsModel = require('../models/students');
 
 class classesController {
     async createClass(req, res) {
@@ -26,8 +27,11 @@ class classesController {
         try {
             const classId = req.params.classId;
             const classById = await classes.getClassById(classId);
-            if(!classById) res.status(404).json({ error: 'Class not found' });
-            res.status(200).json(classById);
+            if(!classById) {
+                return res.status(404).json({ error: 'Class not found' });
+            }
+            const getStudents = await studentsModel.getStudentsByClass(classId)
+            res.status(200).json({ class: classById, students: getStudents });
         } catch (error) {
             res.status(500).json({ error: 'Internal server error' });
         }

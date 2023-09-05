@@ -1,5 +1,5 @@
 const express = require('express');
-const classesController = require('../controller/classes.controller');
+const classesController = require('../controller/classesController');
 const studentsController = require('../controller/studentsController');
 const creditsController = require('../controller/creditsController');
 

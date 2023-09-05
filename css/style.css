@@ -1,0 +1,144 @@
+body, h1, h2, h3, p, table {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5;
+}
+
+#container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 32px;
+    color: #333;
+}
+
+.header h2 {
+    font-size: 18px;
+    color: #666;
+}
+
+#content-page {
+    padding: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+
+p {
+    line-height: 1.5;
+    color: #666;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+#student, #credits {
+    margin-top: 20px;
+}
+
+.create-student,
+.get-student,
+.update-student,
+.delete-student,
+.create-daily-credit,
+.get-daily-credit,
+.get-credit-history,
+.update-daily-credit,
+.delete-daily-credit {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.success {
+    background-color: #d4edda;
+    padding: 10px;
+    border: 1px solid #c3e6cb;
+}
+
+.error-500, .error-400 {
+    background-color: #f8d7da;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #f5c6cb;
+}
+
+.method {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+button {
+    display: inline-block;
+    width: 60px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.post-button {
+    background-color: #007bff;
+}
+
+.get-button {
+    background-color: #28a745;
+}
+
+.put-button {
+    background-color: #ffc107;
+}
+
+.del-button {
+    background-color: #dc3545;
+}
+
+code {
+    background-color: #292727;
+    color: #fff;
+    font-size: 15px;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 600px) {
+    #container {
+        padding: 10px;
+    }
+}
+

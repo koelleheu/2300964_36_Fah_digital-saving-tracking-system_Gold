@@ -5,7 +5,6 @@ const bodyParser = require('body-parser')
 
 app.use(express.json())
 app.use('/api', router)
-app.set('view engine', 'ejs')
 
 app.listen (3000, () => {
     console.log('listening on http://localhost:3000')

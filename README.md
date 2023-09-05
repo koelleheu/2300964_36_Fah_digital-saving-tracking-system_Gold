@@ -1,3 +1,0 @@
-This project was undertaken as part of the Gold Level Challenge at Binar Academy's Fullstack Web Development course. 
-
-It entails the development of a digital savings tracking system aimed at monitoring the daily savings of elementary school students, ultimately providing a comprehensive yearly summary. The system offers a range of essential functionalities, including Create, Read, Update, and Delete (CRUD) operations for entities such as classes, students, and credits. These capabilities empower users to seamlessly add daily credits to specific students, retrieve daily credit records for a given date, update existing credits, and remove them as needed. This project is built using Express.js, Knex for query building, and PostgreSQL for the database.

@@ -16,6 +16,7 @@ class creditsController {
       try {
          const studentId = req.params.studentId;
          const allCredits = await creditsModel.getAllCredits(studentId);
+         if(!allCredits) res.status(404).json({ error: 'Student not found' });
          res.status(200).json(allCredits);
       } catch (error) {
          res.status(500).json({ error: 'Internal server error' });

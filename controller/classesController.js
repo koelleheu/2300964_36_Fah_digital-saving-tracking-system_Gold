@@ -1,11 +1,11 @@
-const classes = require('../models/classes');
+const classesModel = require('../models/classes');
 const studentsModel = require('../models/students');
 
 class classesController {
     async createClass(req, res) {
         try {
             const classData = req.body;
-            const newClass = await classes.createClass(classData);
+            const newClass = await classesModel.createClass(classData);
             res.status(201).json({ message: 'Class created successfully' });
         } catch (error) {
             res.status(500).json({ error: 'Internal server error' });
@@ -16,7 +16,7 @@ class classesController {
 
     async getAllClasses(req, res) {
         try {
-            const allClasses = await classes.getAllClasses();
+            const allClasses = await classesModel.getAllClasses();
             res.status(200).json(allClasses);
         } catch (error) {
             res.status(500).json({ error: 'Internal server error' });
@@ -26,7 +26,7 @@ class classesController {
     async getClassbyId(req, res) {
         try {
             const classId = req.params.classId;
-            const classById = await classes.getClassById(classId);
+            const classById = await classesModel.getClassById(classId);
             if(!classById) {
                 return res.status(404).json({ error: 'Class not found' });
             }
@@ -41,7 +41,7 @@ class classesController {
         try {
             const classId = req.params.classId;
             const classData = req.body;
-            const updatedClass = await classes.updateClass(classId, classData);
+            const updatedClass = await classesModel.updateClass(classId, classData);
             res.status(200).json({ message: 'Class updated successfully' });
         } catch (error) {
             res.status(500).json({ error: 'Internal server error' });
@@ -51,7 +51,7 @@ class classesController {
     async deleteClass(req, res) {
         try {
             const classId = req.params.classId;
-            const deletedClass = await classes.deleteClass(classId);
+            const deletedClass = await classesModel.deleteClass(classId);
             res.status(200).json({ message: 'Class deleted successfully' });
         } catch (error) {
             res.status(500).json({ error: 'Internal server error' });

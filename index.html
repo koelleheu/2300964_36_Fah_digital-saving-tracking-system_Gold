@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API - Documentation</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="container">
+
+        <div class="header">
+            <h1>API - Documentation</h1>
+            <h2>Student's Digital Saving Tracking Sytem</h2>
+        </div>
+
+        <div id="content-page">
+            
+            <div id="introduction">
+                <h2>Introduction</h2>
+                <p>
+                    This project was undertaken as part of the Gold Level Challenge
+                    at Binar Academy's Fullstack Web Development course. 
+                    It entails the development of a digital savings tracking system
+                    aimed at monitoring the daily savings of elementary school students,
+                    ultimately providing a comprehensive yearly summary. 
+                    The system offers a range of essential functionalities,
+                    including Create, Read, Update, and Delete (CRUD) operations 
+                    for entities such as classes, students, and credits. 
+                    These capabilities empower users to seamlessly add daily credits 
+                    to specific students, retrieve daily credit records for a given date, 
+                    update existing credits, and remove them as needed. 
+                    This project is built using Express.js, Knex for query building, and PostgreSQL for the database.
+                </p>
+            </div>
+
+            <div id="student">
+
+                <div class="create-student">
+                    <h2>Student - Create a New Student</h2>
+                    <div class="method">
+                        <button class="post-button">POST</button>
+                        <code class="endpoint">http://localhost:3000/api/students</code>
+                    </div>
+                    <h3>Request Body</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>firstName</td>
+                                <td>string</td>
+                                <td>Student's first name</td>
+                            </tr>
+                            <tr>
+                                <td>lastName</td>
+                                <td>string</td>
+                                <td>Student's last name</td>
+                            </tr>
+                            <tr>
+                                <td>password</td>
+                                <td>string</td>
+                                <td>Student's password</td>
+                            </tr>
+                            <tr>
+                                <td>classId</td>
+                                <td>integer</td>
+                                <td>Student's class ID</td>
+                            </tr>
+                            <tr>
+                                <td>birthDate</td>
+                                <td>date</td>
+                                <td>Student's birth date</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="success">
+                        <h3>Success 200</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>message</td>
+                                    <td>string</td>
+                                    <td>Student created succesfully</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="error-500">
+                        <h3>500 Internal Server Error</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Error 500</td>
+                                    <td>Internal Server Error</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="get-student">
+    
+                    <h2>Student - Get a Student by ID</h2>
+                    <div class="method">
+                        <button class="get-button">GET</button>
+                        <code class="endpoint">http://localhost:3000/api/students/:studentId</code>
+                    </div>
+                    <h3>Query Paramater</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>studentId</td>
+                                <td>integer</td>
+                                <td>Student's uniqe ID</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="success">
+                        <h3>Success 200</h3>
+                        <table>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Field</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>firstName</td>
+                                        <td>string</td>
+                                        <td>Student's first name</td>
+                                    </tr>
+                                    <tr>
+                                        <td>lastName</td>
+                                        <td>string</td>
+                                        <td>Student's last name</td>
+                                    </tr>
+                                    <tr>
+                                        <td>password</td>
+                                        <td>string</td>
+                                        <td>Student's password</td>
+                                    </tr>
+                                    <tr>
+                                        <td>classId</td>
+                                        <td>integer</td>
+                                        <td>Student's class ID</td>
+                                    </tr>
+                                    <tr>
+                                        <td>birthDate</td>
+                                        <td>date</td>
+                                        <td>Student's birth date</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </div>
+                    <div class="error-400">
+                        <h3>Error 4xx</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Error 404</td>
+                                    <td>Student Not Found</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="error-500">
+                        <h3>500 Internal Server Error</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Error 500</td>
+                                    <td>Internal Server Error</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+                <div class="update-student">
+                    <h2>Student - Update a Student</h2>
+                    <div class="method">
+                        <button class="put-button">PUT</button>
+                        <code class="endpoint">http://localhost:3000/api/students/:studentId</code>
+                    </div>
+                    <h3>Query Paramater</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>studentId</td>
+                                <td>integer</td>
+                                <td>Student's uniqe ID</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h3>Request Body</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>firstName</td>
+                                <td>string</td>
+                                <td>Student's first name</td>
+                            </tr>
+                            <tr>
+                                <td>lastName</td>
+                                <td>string</td>
+                                <td>Student's last name</td>
+                            </tr>
+                            <tr>
+                                <td>password</td>
+                                <td>string</td>
+                                <td>Student's password</td>
+                            </tr>
+                            <tr>
+                                <td>classId</td>
+                                <td>integer</td>
+                                <td>Student's class ID</td>
+                            </tr>
+                            <tr>
+                                <td>birthDate</td>
+                                <td>date</td>
+                                <td>Student's birth date</td>
+                            </tr>
+                        </tbody>
+                    </table>
+    
+                    <div class="success">
+                        <h3>Success 200</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>message</td>
+                                    <td>string</td>
+                                    <td>Student updated succesfully</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+    
+                    <div class="error-400">
+                        <h3>Error 4xx</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Error 404</td>
+                                    <td>Student Not Found</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="error-500">
+                        <h3>500 Internal Server Error</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Error 500</td>
+                                    <td>Internal Server Error</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="delete-student">
+    
+                    <h2>Student - Delete a Student</h2>
+                    <div class="method">
+                        <button class="del-button">DEL</button>
+                        <code class="endpoint">http://localhost:3000/api/students/:studentId</code>
+                    </div>
+                    <h3>Query Paramater</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>studentId</td>
+                                <td>integer</td>
+                                <td>Student's uniqe ID</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="success">
+                        <h3>Success 200</h3>
+                        <table>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Field</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>message</td>
+                                        <td>string</td>
+                                        <td>Student deleted succesfully</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </div>
+                    <div class="error-400">
+                        <h3>Error 4xx</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Error 404</td>
+                                    <td>Student Not Found</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="error-500">
+                        <h3>500 Internal Server Error</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Error 500</td>
+                                    <td>Internal Server Error</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="credits">
+
+                <div class="create-daily-credit">
+                    <h2>Credits - Create a Daily Credit</h2>
+                    <div class="method">
+                        <button class="post-button">POST</button>
+                        <code class="endpoint">http://localhost:3000/api/credits</code>
+                    </div>
+                    <h3>Request Body</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>studentId</td>
+                                <td>integer</td>
+                                <td>Student's uniqe ID</td>
+                            </tr>
+                            <tr>
+                                <td>creditDate</td>
+                                <td>date</td>
+                                <td>Credit added date</td>
+                            </tr>
+                            <tr>
+                                <td>creditAmount</td>
+                                <td>big integer</td>
+                                <td>Credit amount to add</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="success">
+                        <h3>Success 200</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>message</td>
+                                    <td>string</td>
+                                    <td>Daily credit created succesfully</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="error-500">
+                        <h3>500 Internal Server Error</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Error 500</td>
+                                    <td>Internal Server Error</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="get-credit-history">
+    
+                    <h2>Credits - Get a Student's Credit History</h2>
+                    <div class="method">
+                        <button class="get-button">GET</button>
+                        <code class="endpoint">http://localhost:3000/api/credits/:studentId</code>
+                    </div>
+                    <h3>Query Paramater</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>studentId</td>
+                                <td>integer</td>
+                                <td>Student's uniqe ID</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="success">
+                        <h3>Success 200</h3>
+                        <table>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Field</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>credit_id</td>
+                                        <td>integer</td>
+                                        <td>Student's credit ID</td>
+                                    </tr>
+                                    <tr>
+                                        <td>student_id</td>
+                                        <td>integer</td>
+                                        <td>Student's uniqe ID</td>
+                                    </tr>
+                                    <tr>
+                                        <td>credit_date</td>
+                                        <td>date</td>
+                                        <td>Credit added date</td>
+                                    </tr>
+                                    <tr>
+                                        <td>amount</td>
+                                        <td>big integer</td>
+                                        <td>Credit amount</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </div>
+                    <div class="error-400">
+                        <h3>Error 4xx</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Error 404</td>
+                                    <td>Student Not Found</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="error-500">
+                        <h3>500 Internal Server Error</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Error 500</td>
+                                    <td>Internal Server Error</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="get-daily-credit">
+    
+                    <h2>Credits - Get a Student's Daily Credit</h2>
+                    <div class="method">
+                        <button class="get-button">GET</button>
+                        <code class="endpoint">http://localhost:3000/api/credits</code>
+                    </div>
+                    <h3>Request Body</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>studentId</td>
+                                <td>integer</td>
+                                <td>Student's uniqe ID</td>
+                            </tr>
+                            <tr>
+                                <td>creditDate</td>
+                                <td>date</td>
+                                <td>Credit added date</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="success">
+                        <h3>Success 200</h3>
+                        <table>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Field</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>credit_id</td>
+                                        <td>integer</td>
+                                        <td>Student's credit ID</td>
+                                    </tr>
+                                    <tr>
+                                        <td>student_id</td>
+                                        <td>integer</td>
+                                        <td>Student's uniqe ID</td>
+                                    </tr>
+                                    <tr>
+                                        <td>credit_date</td>
+                                        <td>date</td>
+                                        <td>Credit added date</td>
+                                    </tr>
+                                    <tr>
+                                        <td>amount</td>
+                                        <td>big integer</td>
+                                        <td>Credit amount</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                    </div>
+                    <div class="error-400">
+                        <h3>Error 4xx</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Error 404</td>
+                                    <td>Credit Not Found</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="error-500">
+                        <h3>500 Internal Server Error</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Error 500</td>
+                                    <td>Internal Server Error</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="update-daily-credit">
+                    <h2>Credits - Update a Daily Credit</h2>
+                    <div class="method">
+                        <button class="put-button">PUT</button>
+                        <code class="endpoint">http://localhost:3000/api/credits</code>
+                    </div>
+                    <h3>Request Body</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>studentId</td>
+                                <td>integer</td>
+                                <td>Student's uniqe ID</td>
+                            </tr>
+                            <tr>
+                                <td>creditDate</td>
+                                <td>date</td>
+                                <td>Credit added date</td>
+                            </tr>
+                            <tr>
+                                <td>creditAmount</td>
+                                <td>big integer</td>
+                                <td>Credit amount to add</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="success">
+                        <h3>Success 200</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>message</td>
+                                    <td>string</td>
+                                    <td>Daily credit updated succesfully</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="error-500">
+                        <h3>500 Internal Server Error</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Error 500</td>
+                                    <td>Internal Server Error</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="delete-daily-credit">
+                    <h2>Credits - Delete a Daily Credit</h2>
+                    <div class="method">
+                        <button class="del-button">DEL</button>
+                        <code class="endpoint">http://localhost:3000/api/credits</code>
+                    </div>
+                    <h3>Request Body</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Field</th>
+                                <th>Type</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>studentId</td>
+                                <td>integer</td>
+                                <td>Student's uniqe ID</td>
+                            </tr>
+                            <tr>
+                                <td>creditDate</td>
+                                <td>date</td>
+                                <td>Credit added date</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="success">
+                        <h3>Success 200</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Field</th>
+                                    <th>Type</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>message</td>
+                                    <td>string</td>
+                                    <td>Daily credit deleted succesfully</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="error-500">
+                        <h3>500 Internal Server Error</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Error 500</td>
+                                    <td>Internal Server Error</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

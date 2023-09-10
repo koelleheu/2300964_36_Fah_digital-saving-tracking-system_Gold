@@ -8,8 +8,9 @@ body {
     background-color: #f5f5f5;
 }
 
+
 #container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
@@ -32,7 +33,26 @@ body {
 }
 
 #content-page {
-    padding: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+
+.nav-pills .nav-link {
+    width: 100%;
+    text-align: left;
+    padding-left: 0.5rem;
+    color: #555;
+}
+
+.nav-pills .nav-link:hover {
+    background-color: #555;
+    color: #fff;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #555;
+    color: #fff;
 }
 
 h2 {
@@ -67,15 +87,15 @@ th, td {
     margin-top: 20px;
 }
 
-.create-student,
-.get-student,
-.update-student,
-.delete-student,
-.create-daily-credit,
-.get-daily-credit,
-.get-credit-history,
-.update-daily-credit,
-.delete-daily-credit {
+#create-student,
+#get-student,
+#update-student,
+#delete-student,
+#create-daily-credit,
+#get-daily-credit,
+#get-credit-history,
+#update-daily-credit,
+#delete-daily-credit {
     display: flex;
     flex-direction: column;
     margin-bottom: 10px;

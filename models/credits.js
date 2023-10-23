@@ -8,8 +8,7 @@ class dailyCreditsModel {
       student_id: studentId,
       credit_date: creditDate,
       amount: creditAmount})
-      console.log('Credit added succesfuly')
-      return newCredit;
+    return newCredit;
   }
 
   getAllCredits(studentId) {

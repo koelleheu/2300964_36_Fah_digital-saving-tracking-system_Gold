@@ -3,9 +3,10 @@ const db = require('../db/db');
 class classesModel {
 
   createClass(classData) {
-    const { class_name } = classData;
-    const newClass = db('classes').insert({ class_name });
-    console.log('Class added succesfuly')
+    const { className, levelId } = classData;
+    const newClass = db('classes').insert({ 
+      class_name: className,
+      level_id: levelId });
     return newClass;
   }
 
@@ -19,9 +20,16 @@ class classesModel {
     return classById;
   }
 
+  getClassByLevel(levelId) {
+    const classByLevel = db('classes').where('level_id', levelId).select('*')
+    return classByLevel
+  }
+
   updateClass(classId, classData) {
-    const { class_name } = classData;
-    const updatedClass = db('classes').where('class_id', classId).update({ class_name });
+    const { className, levelId } = classData;
+    const updatedClass = db('classes').where('class_id', classId).update({
+       class_name: className,
+       level_id: levelId });
     return updatedClass;
   }
 

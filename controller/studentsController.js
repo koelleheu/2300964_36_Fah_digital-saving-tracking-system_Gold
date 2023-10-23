@@ -9,9 +9,7 @@ class studentsController {
             await studentsModel.createStudent(studentData);
             res.status(201).json({ message: 'Student created successfully' });
         } catch (error) {
-            res.status(500).json({ error: 'Internal server error' });
-        } finally {
-            db.destroy();
+            res.status(500).json({ message: 'Internal server error', error: error.message });
         }
     }
 
@@ -20,7 +18,7 @@ class studentsController {
             const allStudents = await studentsModel.getStudents();
             res.status(200).json(allStudents);
         } catch (error) {
-            res.status(500).json({ error: 'Internal server error' });
+            res.status(500).json({ message: 'Internal server error', error: error.message });
         }
     }
 
@@ -34,7 +32,7 @@ class studentsController {
             res.status(200).json({student: studentById, totalCredits: studentCredits});
             }
          catch (error) {
-            res.status(500).json({ error: 'Internal server error' });
+            res.status(500).json({ message: 'Internal server error', error: error.message });
         }
     }
 
@@ -42,10 +40,12 @@ class studentsController {
         try {
             const studentId = req.params.studentId;
             const studentData = req.body;
-            await studentsModel.updateStudent(studentId, studentData);
+            const updatedStudent = await studentsModel.updateStudent(studentId, studentData);
+            if(!updatedStudent) {
+                return res.status(404).json({ error: 'Student not found' })};
             res.status(200).json({ message: 'Student updated successfully' });
         } catch (error) {
-            res.status(500).json({ error: 'Internal server error' });
+            res.status(500).json({ message: 'Internal server error', error: error.message });
         }
     }
 
@@ -55,7 +55,7 @@ class studentsController {
             await studentsModel.deleteStudent(studentId);
             res.status(200).json({ message: 'Student deleted successfully' });
         } catch (error) {
-            res.status(500).json({ error: 'Internal server error' });
+            res.status(500).json({ message: 'Internal server error', error: error.message });
         }
     }
 

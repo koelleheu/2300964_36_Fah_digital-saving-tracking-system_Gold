@@ -1,16 +1,17 @@
 const db = require('../db/db');
+const bcrypt = require('bcrypt')
 
 class studentsModel {
   
   createStudent(studentData) {
     const { firstName, lastName, password, classId, birthDate } = studentData;
-    const newStudent = db('students').insert({ 
+    const encryptedPassword = bcrypt.hashSync(password, 10)
+    const newStudent = db('students').returning('student_id').insert({ 
       first_name: firstName, 
       last_name: lastName, 
-      password: password, 
+      password: encryptedPassword, 
       class_id: classId, 
       birth_date: birthDate });
-    console.log('Student added succesfuly')
     return newStudent;
   }
 

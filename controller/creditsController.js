@@ -8,7 +8,7 @@ class creditsController {
          await creditsModel.addCredit(creditData);
          res.status(201).json({ message: 'Credit added successfully' });
       } catch (error) {
-         res.status(500).json({ error: 'Internal server error' });
+         res.status(500).json({ message: 'Internal server error', error: error.message });
       }
    }
 
@@ -19,7 +19,7 @@ class creditsController {
          if(!allCredits) res.status(404).json({ error: 'Student not found' });
          res.status(200).json(allCredits);
       } catch (error) {
-         res.status(500).json({ error: 'Internal server error' });
+         res.status(500).json({ message: 'Internal server error', error: error.message });
       }
    }
    
@@ -33,7 +33,7 @@ class creditsController {
          res.status(200).json(dailyCredit);
       }
       catch (error) {
-         res.status(500).json({ error: 'Internal server error' });
+         res.status(500).json({ message: 'Internal server error', error: error.message });
       }
    }
    
@@ -43,7 +43,7 @@ class creditsController {
          await creditsModel.updateDailyCredit(creditData);
          res.status(200).json({ message: 'Credit updated successfully' });
       } catch (error) {
-         res.status(500).json({ error: 'Internal server error' });
+         res.status(500).json({ message: 'Internal server error', error: error.message });
       }
    }
 
@@ -53,7 +53,7 @@ class creditsController {
          await creditsModel.deleteDailyCredit(creditData);
          res.status(200).json({ message: 'Credit deleted successfully' });
       } catch (error) {
-         res.status(500).json({ error: 'Internal server error' });
+         res.status(500).json({ message: 'Internal server error', error: error.message });
       }
    }
 
@@ -64,7 +64,7 @@ class creditsController {
         res.status(200).json({ totalCredit: totalCredit});
       } catch (error) {
         console.error(error);
-        res.status(500).json({ error: 'An error occurred' });
+        res.status(500).json({ message: 'Internal server error', error: error.message });
       }
    }
 

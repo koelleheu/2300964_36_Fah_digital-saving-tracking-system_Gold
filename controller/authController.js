@@ -51,7 +51,6 @@ const adminLogin = (req, res) => {
         }
         const accesToken = jwt.sign({
             username: admin.username,
-            role: admin.role
         }, rahasia, { 
             expiresIn: 60 * 60
         })
@@ -66,7 +65,10 @@ const adminLogin = (req, res) => {
 
 const whoami = (req, res) => {
     const currentUser = req.user
-    return res.json(currentUser)
+    return res.json({
+        firstName: currentUser.first_name,
+        username: currentUser.username
+    })
 }
 
 module.exports = {

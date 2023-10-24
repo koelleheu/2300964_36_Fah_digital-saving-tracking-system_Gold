@@ -6,8 +6,10 @@ const unitsController = require('../controller/unitsController');
 const periodController = require('../controller/periodController');
 const levelsController = require('../controller/levelsController');
 const adminsController = require('../controller/adminsController');
-const admins = require('../models/admins');
+const auth = require('../controller/authController')
 
+const { studentRestrict } = require('../middleware/restrict')
+const { adminRestrict } = require('../middleware/restrict')
 
 const router = express.Router();
 
@@ -58,5 +60,13 @@ router.get('/admins/:adminId', adminsController.getAdminById)
 router.post('/admins', adminsController.createAdmin)
 router.put('/admins/:adminId', adminsController.updateAdmin)
 router.delete('/admins/:adminId', adminsController.deleteAdmin)
+
+//login
+router.post('/login/student', auth.studentLogin)
+router.post('/login/admin', auth.adminLogin)
+
+//whoami
+router.get('/student-protected-route', studentRestrict, auth.whoami)
+router.get('/admin-protected-route', adminRestrict, auth.whoami)
 
 module.exports = router;

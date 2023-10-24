@@ -4,9 +4,10 @@ const bcrypt = require('bcrypt')
 class studentsModel {
   
   createStudent(studentData) {
-    const { firstName, lastName, password, classId, birthDate } = studentData;
+    const { studentId, firstName, lastName, password, classId, birthDate } = studentData;
     const encryptedPassword = bcrypt.hashSync(password, 10)
-    const newStudent = db('students').returning('student_id').insert({ 
+    const newStudent = db('students').returning('student_id').insert({
+      student_id: studentId,
       first_name: firstName, 
       last_name: lastName, 
       password: encryptedPassword, 

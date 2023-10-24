@@ -1,12 +1,14 @@
 const db = require('../db/db')
+const bcrypt = require('bcrypt')
 
 class adminsModel {
 
     createAdmin(adminData) {
         const {username, password, role} = adminData
+        const encryptedPassword = bcrypt.hashSync(password, 10)
         const admin = db('admins').insert({
             username: username,
-            password: password,
+            password: encryptedPassword,
             role: role
         })
         return admin
